@@ -1,0 +1,28 @@
+
+
+// Configures tasks for creating classpath scripts.
+
+task 'setclasspath.cmd'(description:"Creates a classpath setting script for use in a CLI environment.") << {
+
+    // Build up the runtime classpath for the subprojects
+    def fullCp = [] as Set
+    project.configurations.runtime.resolve().each{ fullCp.add(it) }
+
+    // Make sure our local build dir is on the classpath so
+    // we can run right after a "gradle classes"
+    fullCp += sourceSets.main.output.classesDir
+    fullCp += sourceSets.main.output.resourcesDir
+
+    println( "Files:" + new File("./lib").listFiles() );
+    new File("./lib").listFiles().each{ fullCp.add(it) }
+
+    println( "Writing script for classpath:" + fullCp )
+
+    // Write out the properly delimited version to the script
+    def f = new File( it.project.projectDir, "setclasspath.cmd" );
+    //f.write( "set CLASSPATH=" + fullCp.join( System.properties.'path.separator' ) )
+    f.write( "set CLASSPATH=" + fullCp.join( ";" ) )
+}
+
+
+
