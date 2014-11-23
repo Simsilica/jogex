@@ -29,4 +29,7 @@ jar {
     exclude('.backups')
 }
 
+task wrapper(type: Wrapper) {
+    gradleVersion = '1.6'
+}
 
