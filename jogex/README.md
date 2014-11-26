@@ -26,6 +26,7 @@ the current classpath.  The gradle build can produce a shell script (on Windows 
 for easily setting this up.
 
 `gradlew setclasspath.cmd`
+
 `setclasspath.cmd`
 
 Then running the ODDL parser:
@@ -35,6 +36,7 @@ Then running the ODDL parser:
 If the file is read successfully then a toString() representation of the results are printed.
 
 Running the OGEX parser is similar:
+
 `java com.simsilica.oddl.OgexParser myFile.ogex`
 
 Note: in either case, the extension is included for clarity but the .ogex could be read by the Oddl parser the same way.
